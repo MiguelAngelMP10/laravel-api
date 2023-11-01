@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RecipeController;
 use App\Http\Controllers\Api\TagController;
 use Illuminate\Http\Request;
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('login', [LoginController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('categories', [CategoryController::class, 'index']);
