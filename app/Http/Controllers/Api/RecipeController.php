@@ -11,11 +11,24 @@ class RecipeController extends Controller
 {
     public function index(): Collection
     {
-        return Recipe::all();
+        // all, get
+        return Recipe::with('category', 'tags', 'user')->get();
     }
 
     public function show(Recipe $recipe): Recipe
     {
-        return $recipe;
+        return $recipe->load('category', 'tags', 'user');
+    }
+
+    public function store()
+    {
+    }
+
+    public function update()
+    {
+    }
+
+    public function destroy()
+    {
     }
 }
