@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRecipeRequest;
+use App\Http\Requests\UpdateRecipeRequest;
 use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Collection;
@@ -28,7 +30,7 @@ class RecipeController extends Controller
         return new RecipeResource($recipe);
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(StoreRecipeRequest $request): JsonResponse
     {
         $recipe = Recipe::create($request->all());
 
@@ -39,7 +41,7 @@ class RecipeController extends Controller
         return response()->json(new RecipeResource($recipe), Response::HTTP_CREATED); // HTTP 201
     }
 
-    public function update(Request $request, Recipe $recipe): JsonResponse
+    public function update(UpdateRecipeRequest $request, Recipe $recipe): JsonResponse
     {
         $recipe->update($request->all());
 
